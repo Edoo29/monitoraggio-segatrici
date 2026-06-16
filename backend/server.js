@@ -19,3 +19,19 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Backend avviato su http://localhost:${PORT}`);
 });
+
+app.get("/tagli", async (req, res) => {
+  try {
+    const pool = await poolPromise;
+
+    const result = await pool.request().input("cdl", sql.Int, 50723).query(`
+        SELECT *
+        FROM DATALOG_TAGLI
+        WHERE CDL = @cdl
+      `);
+
+    res.json(result.recordset);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});

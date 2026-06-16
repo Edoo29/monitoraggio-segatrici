@@ -1,0 +1,117 @@
+USE [IOT_Power2]
+GO
+
+/****** Object:  Table [dbo].[DATA_PROGRAM]    Script Date: 09/06/2026 09:04:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DATA_PROGRAM](
+	[CDL] [int] NOT NULL,
+	[SEQUENCE] [int] NOT NULL,
+	[MATERIAL] [varchar](20) NULL,
+	[GROUPP] [int] NULL,
+	[SHAPE] [int] NULL,
+	[WIDTH] [float] NULL,
+	[HEIGHT] [float] NULL,
+	[WT] [float] NULL,
+	[COOLANT] [int] NULL,
+	[BAR_LAYER] [int] NULL,
+	[BLADE_SPEED] [int] NULL,
+	[HEAD_FEED] [int] NULL,
+	[MAX_LOAD] [float] NULL,
+	[JOB] [varchar](20) NULL,
+	[LENGHT] [float] NULL,
+	[QUANTITY] [int] NULL,
+	[STATE] [int] NULL
+) ON [PRIMARY]
+GO
+
+-----------------------------------------------------
+
+
+USE [IOT_Power2]
+GO
+
+/****** Object:  Table [dbo].[DATALOG_LAME]    Script Date: 09/06/2026 09:05:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DATALOG_LAME](
+	[CDL] [int] NULL,
+	[TIME] [nchar](24) NULL,
+	[TYPE] [nchar](30) NULL,
+	[CODE] [int] NULL,
+	[REASON] [nchar](20) NULL,
+	[TPI] [nchar](20) NULL,
+	[LENGHT] [nchar](20) NULL,
+	[CUTS] [int] NULL,
+	[T_WORK] [int] NULL,
+	[M2] [float] NULL
+) ON [PRIMARY]
+GO
+
+-------------------------------------------------------------------------------------
+
+USE [IOT_Power2]
+GO
+
+/****** Object:  Table [dbo].[DATALOG_STATO]    Script Date: 09/06/2026 09:05:21 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DATALOG_STATO](
+	[CDL] [int] NULL,
+	[STATE] [int] NULL,
+	[TIME] [nchar](24) NULL
+) ON [PRIMARY]
+GO
+
+---------------------------------------------------------------------------------
+
+USE [IOT_Power2]
+GO
+
+/****** Object:  Table [dbo].[DATALOG_TAGLI]    Script Date: 09/06/2026 09:05:36 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[DATALOG_TAGLI](
+	[CDL] [int] NULL,
+	[NAME] [varchar](20) NULL,
+	[MATERIAL] [varchar](20) NULL,
+	[GROUPP] [int] NULL,
+	[SHAPE] [int] NULL,
+	[WIDTH] [float] NULL,
+	[HEIGHT] [float] NULL,
+	[WT] [float] NULL,
+	[JOB] [varchar](20) NULL,
+	[LENGHT] [float] NULL,
+	[QUANTITY] [int] NULL,
+	[PRODUCT] [int] NULL,
+	[BREAK_IN] [int] NULL,
+	[COOLING] [int] NULL,
+	[MAX_DEVIO] [float] NULL,
+	[MAX_LOAD] [float] NULL,
+	[T_CUT] [int] NULL,
+	[T_CYCLE] [int] NULL,
+	[S_DATE] [varchar](24) NULL,
+	[E_DATE] [varchar](24) NULL,
+	[TYPE_BLADE] [varchar](20) NULL,
+	[CODE_BLADE] [int] NULL,
+	[TPI_BLADE] [varchar](20) NULL
+) ON [PRIMARY]
+GO
+
+---------------------------------------------------------------
