@@ -1,19 +1,46 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
-export function useMacchinaFiltrata(macchina, range) {
-  return useMemo(() => {
-    const settimane = macchina?.settimane || [];
+const parseDM = (str) => {
+  const [d, m] = str.split("/").map(Number);
+  return m * 100 + d;
+};
 
-    if (range === "all") {
-      return macchina;
-    }
+export default function useMacchinaFiltrata(macchina) {
+  const [dateRange, setDateRange] = useState({
+    start: "",
+    end: "",
+  });
 
-    const n = parseInt(range, 10);
-    const filtrate = settimane.slice(-n);
+  const settimaneFiltrate = useMemo(() => {
+    const s = macchina.settimane || [];
 
+    if (!dateRange.start && !dateRange.end) return s;
+
+    const startVal = dateRange.start ? parseDM(dateRange.start) : null;
+    const endVal = dateRange.end ? parseDM(dateRange.end) : null;
+
+    return s.filter((item) => {
+      const rawStart = item.settimana.split(" - ")[0];
+      const val = parseDM(rawStart);
+
+      const startOk = startVal === null || val >= startVal;
+      const endOk = endVal === null || val <= endVal;
+
+      return startOk && endOk;
+    });
+  }, [macchina.settimane, dateRange]);
+
+  const macchinaFiltrata = useMemo(() => {
     return {
       ...macchina,
-      settimane: filtrate,
+      settimane: settimaneFiltrate,
     };
-  }, [macchina, range]);
+  }, [macchina, settimaneFiltrate]);
+
+  return {
+    dateRange,
+    setDateRange,
+    settimaneFiltrate,
+    macchinaFiltrata,
+  };
 }

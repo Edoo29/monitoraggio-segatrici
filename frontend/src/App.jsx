@@ -14,16 +14,14 @@ export default function App() {
   }, [selectedId, macchine]);
 
   return (
-    <>
-      <div className="p-6 flex flex-col gap-6 pt-14 h-full overflow-auto">
-        <Header
-          macchine={macchine}
-          selectedId={selectedId}
-          setSelectedId={setSelectedId}
-        />
+    <div className="p-6 flex flex-col gap-6 pt-14 h-full overflow-auto">
+      <Header
+        macchine={macchine}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
+      />
 
-        <Dashboard macchina={macchina} />
-      </div>
-    </>
+      <Dashboard macchina={macchina} />
+    </div>
   );
 }
