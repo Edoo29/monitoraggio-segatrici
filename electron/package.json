@@ -1,0 +1,35 @@
+{
+  "name": "monitoraggio-segatrici-electron",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "author": "Edoardo Zaffaroni",
+  "scripts": {
+    "dev": "electron .",
+    "start": "electron .",
+    "build": "electron-builder",
+    "postbuild": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "it.zaffaroni.monitoraggiosegatrici",
+    "productName": "Monitoraggio Segatrici",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "**/*",
+      "dist/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

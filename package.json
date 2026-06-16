@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:electron": "wait-on http://localhost:5173 && npm run dev --prefix electron",
+    "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:electron\"",
+    "build:frontend": "npm run build --prefix frontend",
+    "copy:frontend": "cpy \"frontend/dist/**/*\" electron/dist --parents",
+    "build:electron": "npm run build --prefix electron",
+    "dist": "npm run build:frontend && npm run copy:frontend && npm run build:electron"
+  },
+  "devDependencies": {
+    "cpy-cli": "^7.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^10.0.3",
+    "wait-on": "^9.0.10"
+  }
+}
