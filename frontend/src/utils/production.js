@@ -1,5 +1,5 @@
 export function calcKpis(data) {
-  const totalQty = data.reduce((s, r) => s + (r.QUANTITY || 0), 0);
+  const totalQty = data.length;
 
   const avgCycle =
     data.reduce((s, r) => s + (r.T_CYCLE || 0), 0) / (data.length || 1);

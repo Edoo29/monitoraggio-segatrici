@@ -58,3 +58,14 @@ ipcMain.on("window-close", () => {
   const win = BrowserWindow.getFocusedWindow();
   if (win) win.close();
 });
+
+let machineConfig = null;
+
+ipcMain.handle("save-config", async (_, config) => {
+  machineConfig = config;
+  return true;
+});
+
+ipcMain.handle("get-config", async () => {
+  return machineConfig;
+});

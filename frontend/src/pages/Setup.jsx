@@ -28,6 +28,7 @@ export default function Setup() {
         return;
       }
 
+      // salvi solo CDL
       await window.api.saveConfig({
         cdl: Number(cdl),
       });
