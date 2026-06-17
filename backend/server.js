@@ -20,14 +20,35 @@ app.listen(PORT, () => {
   console.log(`🚀 Backend avviato su http://localhost:${PORT}`);
 });
 
-app.get("/tagli", async (req, res) => {
+app.get("/cdl/exists/:cdl", async (req, res) => {
   try {
     const pool = await poolPromise;
+    const cdl = Number(req.params.cdl);
 
-    const result = await pool.request().input("cdl", sql.Int, 50723).query(`
+    const result = await pool.request().input("cdl", sql.Int, cdl).query(`
+        SELECT TOP 1 1 as ok
+        FROM DATALOG_TAGLI
+        WHERE CDL = @cdl
+      `);
+
+    const exists = result.recordset.length > 0;
+
+    res.json({ exists });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get("/cdl/:cdl/data", async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const cdl = Number(req.params.cdl);
+
+    const result = await pool.request().input("cdl", sql.Int, cdl).query(`
         SELECT *
         FROM DATALOG_TAGLI
         WHERE CDL = @cdl
+        ORDER BY S_DATE DESC
       `);
 
     res.json(result.recordset);

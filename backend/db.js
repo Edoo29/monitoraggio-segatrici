@@ -14,5 +14,15 @@ const config = {
   },
 };
 
-export const poolPromise = sql.connect(config);
-export default sql;
+console.log("🔌 Connessione DB in corso...");
+
+export const poolPromise = sql
+  .connect(config)
+  .then((pool) => {
+    console.log("✅ DB CONNESSO");
+    return pool;
+  })
+  .catch((err) => {
+    console.error("❌ ERRORE CONNESSIONE DB:", err);
+    throw err;
+  });
