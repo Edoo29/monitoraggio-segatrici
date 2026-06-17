@@ -3,7 +3,7 @@ import datiMacchine from "./dati/mock.json";
 import Header from "./components/Header";
 import Dashboard from "./components/dashboard/Dashboard";
 import TitleBar from "./components/TitleBar";
-import "./App.css";
+import "../App.css";
 
 export default function App() {
   const macchine = datiMacchine.macchine;

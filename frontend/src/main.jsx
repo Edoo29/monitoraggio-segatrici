@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import App from "./App.jsx";
+import App from "./pages/App.jsx";
 import TitleBar from "./components/TitleBar.jsx";
+
 const isMacOS = window.env?.platform === "darwin";
 
 createRoot(document.getElementById("root")).render(
