@@ -2,9 +2,6 @@ export function calcKpi(macchina) {
   const settimane = macchina.settimane || [];
   const lame = macchina.lame || [];
 
-  // -------------------------
-  // KPI SETTIMANE
-  // -------------------------
   if (!settimane.length) {
     return {
       media: 0,
@@ -16,7 +13,6 @@ export function calcKpi(macchina) {
       utilizzoDelta: 0,
       disponibilitaDelta: 0,
 
-      // KPI LAME
       usuraMediaLame: 0,
       lamaPiuUsurata: null,
       lamaMenoUsurata: null,
@@ -65,9 +61,6 @@ export function calcKpi(macchina) {
         ((prev.disponibile - prev.utilizzo) / prev.disponibile) * 100
       : 0;
 
-  // -------------------------
-  // KPI LAME
-  // -------------------------
   const lameConUsura = lame.map((l) => {
     const usura = l.tagliMassimi ? l.tagliEffettuati / l.tagliMassimi : 0;
 
