@@ -1,11 +1,11 @@
 import Box from "../ui/Box";
 import Kpi from "../ui/Kpi";
-import { calcKpis } from "../../utils/production";
+import { calcKpi } from "../../utils/calcKpi";
 import GraficoMateriali from "../grafici/GraficoMateriali";
 import GraficoTempo from "../grafici/GraficoTempo";
 
 export default function Dashboard({ data }) {
-  const kpi = calcKpis(data);
+  const kpi = calcKpi(data);
 
   const listaKpi = [
     {

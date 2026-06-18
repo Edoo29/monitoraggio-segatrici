@@ -1,4 +1,4 @@
-export function calcKpis(data) {
+export function calcKpi(data) {
   const totalCycle = data.reduce(
     (sum, row) => sum + (Number(row.T_CYCLE) || 0),
     0,

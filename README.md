@@ -1,6 +1,6 @@
 # 📊 Monitoraggio Segatrici
 
-Dashboard desktop per il monitoraggio in tempo reale di segatrici industriali, costruita con Electron, Vite e React.
+Dashboard desktop per il monitoraggio in tempo reale di segatrici industriali, costruita con Electron, React, Node.js + Express e altro.
 
 ---
 
