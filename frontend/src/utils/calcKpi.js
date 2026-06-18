@@ -4,7 +4,7 @@ export function calcKpi(data) {
     0,
   );
 
-  const totalCut = data.reduce((sum, row) => sum + (Number(row.T_CUT) || 0), 0);
+  const totalCut = data.length;
 
   const totalCycleHours = totalCycle / 3600;
   const totalCutHours = totalCut / 3600;

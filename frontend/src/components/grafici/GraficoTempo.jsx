@@ -9,7 +9,7 @@ import {
 
 import Box from "../ui/Box";
 
-const COLORS = ["#3b82f6", "#22c55e"];
+const COLORS = ["#3b82f6", "#ef4444"];
 
 export default function GraficoTempo({ data = [] }) {
   const totalCycle = data.reduce((s, r) => s + (Number(r.T_CYCLE) || 0), 0);

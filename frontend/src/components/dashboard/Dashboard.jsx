@@ -9,8 +9,8 @@ export default function Dashboard({ data }) {
 
   const listaKpi = [
     {
-      title: "Pezzi totali",
-      value: kpi.jobs,
+      title: "Tagli totali",
+      value: kpi.totalCut,
       type: "saturazione",
     },
     {

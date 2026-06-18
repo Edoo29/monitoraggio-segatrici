@@ -73,3 +73,21 @@ app.get("/cdl/:cdl/count", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+app.get("/api/datalog/:cdl", async (req, res) => {
+  try {
+    const pool = await poolPromise;
+    const cdl = Number(req.params.cdl);
+
+    const result = await pool.request().input("cdl", sql.Int, cdl).query(`
+        SELECT *
+        FROM DATALOG_TAGLI
+        WHERE CDL = @cdl
+        ORDER BY S_DATE DESC
+      `);
+
+    res.json(result.recordset);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
