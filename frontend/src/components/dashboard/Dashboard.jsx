@@ -11,18 +11,22 @@ export default function Dashboard({ data }) {
   const [open, setOpen] = useState(false);
   const kpi = calcKpi(data);
 
+  const classNameKpiCliccabile = "cursor-pointer hover:scale-90 transition-all";
+
   const listaKpi = [
     {
       title: "Tagli totali",
       value: kpi.totalCut,
       type: "saturazione",
       onClick: () => navigate("/tagli"),
-      className: "cursor-pointer hover:scale-90 transition-all",
+      className: classNameKpiCliccabile,
     },
     {
       title: "Materiali",
       value: kpi.materials,
       type: "utilizzo",
+      onClick: () => navigate("/materiali"),
+      className: classNameKpiCliccabile,
     },
     {
       title: "Ciclo medio",
