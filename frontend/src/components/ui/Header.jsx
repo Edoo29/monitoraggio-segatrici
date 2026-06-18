@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Box from "./ui/Box";
+import Box from "./Box";
 
 export default function Header() {
   const [machine, setMachine] = useState(null);

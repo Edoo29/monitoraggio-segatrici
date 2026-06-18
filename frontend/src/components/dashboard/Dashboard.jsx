@@ -1,45 +1,49 @@
 import Box from "../ui/Box";
-import GraficoLinea from "../grafici/GraficoLinea";
-import GraficoBarre from "../grafici/GraficoBarre";
 import Kpi from "../ui/Kpi";
-import JobCard from "../JobCard";
 import { calcKpis } from "../../utils/production";
+import GraficoMateriali from "../grafici/GraficoMateriali";
+import GraficoTempo from "../grafici/GraficoTempo";
 
 export default function Dashboard({ data }) {
   const kpi = calcKpis(data);
 
-  const chartLine = data.map((r) => ({
-    label: r.JOB,
-    value: r.QUANTITY,
-  }));
-
-  const chartBar = data.map((r) => ({
-    job: r.JOB,
-    cycle: r.T_CYCLE,
-    cut: r.T_CUT,
-  }));
+  const listaKpi = [
+    {
+      title: "Pezzi totali",
+      value: kpi.jobs,
+      type: "saturazione",
+    },
+    {
+      title: "Materiali",
+      value: kpi.materials,
+      type: "utilizzo",
+    },
+    {
+      title: "Ciclo medio",
+      value: `${kpi.avgCycle.toFixed(1)}s`,
+      type: "tempo",
+    },
+    {
+      title: "Tempo totale",
+      value: `${kpi.totalCycleHours.toFixed(1)}h`,
+      type: "tempo",
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Kpi title="Pezzi totali" value={kpi.totalQty} type="utilizzo" />
-        <Kpi title="Job" value={kpi.jobs} type="saturazione" />
-        <Kpi title="Materiali" value={kpi.materials} type="utilizzo" />
-        <Kpi title="Ciclo medio" value={`${kpi.avgCycle.toFixed(1)}s`} />
+        {listaKpi.map((item, idx) => (
+          <Kpi title={item.title} value={item.value} type={item.type} />
+        ))}
       </div>
 
       <Box titolo="Analisi produzione">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <GraficoLinea data={chartLine} />
-          <GraficoBarre data={chartBar} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <GraficoMateriali data={data} />
+          <GraficoTempo data={data} />
         </div>
       </Box>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((r, i) => (
-          <JobCard key={i} row={r} />
-        ))}
-      </div>
     </div>
   );
 }

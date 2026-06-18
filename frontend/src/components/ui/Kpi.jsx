@@ -3,13 +3,11 @@ import {
   AlertTriangle,
   TrendingUp,
   TrendingDown,
+  Clock,
 } from "lucide-react";
 
 import Box from "./Box";
 
-/* -------------------------
-   SOGLIE GLOBALI
-------------------------- */
 const getLevel = (value, thresholds = { green: 60, orange: 80 }) => {
   if (value <= thresholds.green) return "green";
   if (value <= thresholds.orange) return "orange";
@@ -31,9 +29,6 @@ const levelStyle = {
   },
 };
 
-/* -------------------------
-   CONFIG KPI
-------------------------- */
 const config = {
   saturazione: {
     icon: Activity,
@@ -49,6 +44,11 @@ const config = {
     icon: AlertTriangle,
     thresholds: { green: 0, orange: 2 },
     isPositiveGood: false,
+  },
+  tempo: {
+    icon: Clock,
+    thresholds: { green: 1, orange: 2 },
+    isPositive: true,
   },
 };
 

@@ -1,19 +1,30 @@
 export function calcKpis(data) {
-  const totalQty = data.length;
+  const totalCycle = data.reduce(
+    (sum, row) => sum + (Number(row.T_CYCLE) || 0),
+    0,
+  );
 
-  const avgCycle =
-    data.reduce((s, r) => s + (r.T_CYCLE || 0), 0) / (data.length || 1);
+  const totalCut = data.reduce((sum, row) => sum + (Number(row.T_CUT) || 0), 0);
 
-  const avgCut =
-    data.reduce((s, r) => s + (r.T_CUT || 0), 0) / (data.length || 1);
+  const totalCycleHours = totalCycle / 3600;
+  const totalCutHours = totalCut / 3600;
+
+  const avgCycle = totalCycle / (data.length || 1);
+
+  const avgCut = totalCut / (data.length || 1);
 
   const materials = new Set(data.map((r) => r.MATERIAL)).size;
 
+  const jobs = new Set(data.map((r) => r.JOB)).size;
+
   return {
-    totalQty,
+    totalCycle,
+    totalCut,
+    totalCycleHours,
+    totalCutHours,
     avgCycle,
     avgCut,
     materials,
-    jobs: data.length,
+    jobs,
   };
 }

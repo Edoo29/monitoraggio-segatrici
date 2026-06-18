@@ -1,4 +1,4 @@
-import Box from "./ui/Box";
+import Box from "./Box";
 
 export default function Button({ text, onClick, disabled, children }) {
   return (

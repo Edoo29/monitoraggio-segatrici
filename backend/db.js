@@ -14,7 +14,7 @@ const config = {
   },
 };
 
-console.log("🔌 Connessione DB in corso...");
+console.log("Connessione DB in corso...");
 
 export const poolPromise = sql
   .connect(config)

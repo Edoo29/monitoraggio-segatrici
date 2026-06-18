@@ -6,18 +6,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
   close: () => ipcRenderer.send("window-close"),
 });
 
-/* -------------------------
-   CONFIG API
---------------------------*/
-
 contextBridge.exposeInMainWorld("api", {
   saveConfig: (config) => ipcRenderer.invoke("save-config", config),
   getConfig: () => ipcRenderer.invoke("get-config"),
 });
-
-/* -------------------------
-   ENV
---------------------------*/
 
 contextBridge.exposeInMainWorld("env", {
   platform: process.platform,
