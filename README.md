@@ -41,6 +41,7 @@ L'app è composta da tre livelli:
 ```
 git clone https://github.com/Edoo29/monitoraggio-segatrici.git
 cd monitoraggio-segatrici
+
 npm install
 npm install --prefix frontend
 npm install --prefix backend
