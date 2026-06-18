@@ -1,7 +1,13 @@
 import sql from "mssql";
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config();
+dotenv.config({
+  path:
+    process.env.NODE_ENV === "production"
+      ? path.join(process.cwd(), ".env")
+      : ".env",
+});
 
 const config = {
   user: process.env.DB_USER,
@@ -14,7 +20,7 @@ const config = {
   },
 };
 
-console.log("Connessione DB in corso...");
+console.log("DB CONFIG:", config);
 
 export const poolPromise = sql
   .connect(config)
@@ -23,6 +29,6 @@ export const poolPromise = sql
     return pool;
   })
   .catch((err) => {
-    console.error("❌ ERRORE CONNESSIONE DB:", err);
+    console.error("❌ ERRORE DB:", err);
     throw err;
   });

@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { poolPromise } from "./db.js";
 import sql from "mssql";
 
 dotenv.config();
@@ -16,8 +15,15 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Backend avviato su http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  console.log(`🚀 Backend avviato su http://localhost:${PORT}`);
+
+  try {
+    const db = await import("./db.js");
+    poolPromise = db.poolPromise;
+  } catch (err) {
+    console.error("❌ DB INIT ERROR:", err);
+  }
 });
 
 app.get("/cdl/exists/:cdl", async (req, res) => {

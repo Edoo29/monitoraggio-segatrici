@@ -1,3 +1,4 @@
+import { spawn } from "child_process";
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,6 +8,37 @@ const __dirname = path.dirname(__filename);
 
 let mainWindow;
 const isMacOS = process.platform === "darwin";
+
+let backendProcess;
+
+function startBackend() {
+  const serverPath = app.isPackaged
+    ? path.join(process.resourcesPath, "backend/server.js")
+    : path.join(__dirname, "../backend/server.js");
+
+  console.log("🚀 BACKEND PATH:", serverPath);
+
+  backendProcess = spawn("node", [serverPath], {
+    stdio: "pipe",
+    shell: true,
+  });
+
+  backendProcess.stdout.on("data", (d) => {
+    console.log("[BACKEND]", d.toString());
+  });
+
+  backendProcess.stderr.on("data", (d) => {
+    console.log("[BACKEND ERROR]", d.toString());
+  });
+
+  backendProcess.on("error", (err) => {
+    console.log("❌ SPAWN ERROR:", err);
+  });
+
+  backendProcess.on("close", (code) => {
+    console.log("❌ BACKEND CHIUSO:", code);
+  });
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -32,7 +64,10 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  startBackend();
+  createWindow();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
@@ -68,4 +103,8 @@ ipcMain.handle("save-config", async (_, config) => {
 
 ipcMain.handle("get-config", async () => {
   return machineConfig;
+});
+
+app.on("before-quit", () => {
+  if (backendProcess) backendProcess.kill();
 });

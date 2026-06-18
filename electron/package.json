@@ -17,6 +17,12 @@
   "build": {
     "appId": "it.zaffaroni.monitoraggiosegatrici",
     "productName": "Monitoraggio Segatrici",
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to": "backend"
+      }
+    ],
     "directories": {
       "output": "dist_electron"
     },
