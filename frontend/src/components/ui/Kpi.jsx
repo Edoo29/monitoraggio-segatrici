@@ -20,13 +20,21 @@ const config = {
   },
 };
 
-export default function Kpi({ title, value, delta, subtitle, type }) {
+export default function Kpi({
+  title,
+  value,
+  delta,
+  subtitle,
+  type,
+  onClick,
+  className,
+}) {
   const Icon = config[type]?.icon;
 
   const isPositive = typeof delta === "number" && delta >= 0;
 
   return (
-    <Box dark>
+    <Box dark onClick={onClick} className={className}>
       <div className="flex justify-between items-start">
         <div>
           <p className="text-sm text-slate-400">{title}</p>

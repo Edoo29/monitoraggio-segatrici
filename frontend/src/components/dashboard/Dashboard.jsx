@@ -3,8 +3,12 @@ import Kpi from "../ui/Kpi";
 import { calcKpi } from "../../utils/calcKpi";
 import GraficoMateriali from "../grafici/GraficoMateriali";
 import GraficoTempo from "../grafici/GraficoTempo";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function Dashboard({ data }) {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   const kpi = calcKpi(data);
 
   const listaKpi = [
@@ -12,6 +16,8 @@ export default function Dashboard({ data }) {
       title: "Tagli totali",
       value: kpi.totalCut,
       type: "saturazione",
+      onClick: () => navigate("/tagli"),
+      className: "cursor-pointer hover:scale-90 transition-all",
     },
     {
       title: "Materiali",
@@ -34,7 +40,13 @@ export default function Dashboard({ data }) {
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {listaKpi.map((item, idx) => (
-          <Kpi title={item.title} value={item.value} type={item.type} />
+          <Kpi
+            className={item.className}
+            onClick={item.onClick}
+            title={item.title}
+            value={item.value}
+            type={item.type}
+          />
         ))}
       </div>
 

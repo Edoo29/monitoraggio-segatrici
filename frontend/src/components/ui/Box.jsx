@@ -18,9 +18,11 @@ export default function Box({
   children,
   className = "",
   dark,
+  onClick,
 }) {
   return (
     <div
+      onClick={onClick}
       className={`rounded-2xl overflow-hidden ${className}`}
       style={dark ? style.dark : style.default}
     >
