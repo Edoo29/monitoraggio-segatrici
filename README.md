@@ -27,8 +27,8 @@ L’applicazione è strutturata in tre livelli principali:
 ## ⚙️ Installazione
 
 ```
-git clone https://github.com/Edoo29/dashboard-segatrici.git
-cd dashboard-segatrici
+git clone https://github.com/Edoo29/monitoraggio-segatrici.git
+cd monitoraggio-segatrici
 npm install
 npm install --prefix frontend
 npm install --prefix backend
