@@ -20,15 +20,14 @@ L'app è composta da tre livelli:
 
 ### 🖥️ Frontend (React + Vite)
 
-- Dashboard KPI
-- Grafici produzione (Recharts)
+- Dashboard con dati e KPI
+- Grafici produzione
 - UI real-time
 
 ### ⚙️ Backend (Node.js + Express)
 
 - API REST per accesso ai dati
 - Query su SQL Server
-- Aggregazione KPI
 
 ### 🗄️ Database (SQL Server)
 
@@ -46,6 +45,22 @@ npm install
 npm install --prefix frontend
 npm install --prefix backend
 npm install --prefix electron
+```
+
+---
+
+## 🔥 Avvio progetto in fase di sviluppo
+
+Dalla cartella principale:
+
+```
+# Avvii separati
+npm run dev:frontend  # Avvio del frontend
+npm run dev:backend  # Avvio del backend
+npm run dev:electron  # Avvio di electron
+
+# Unico comando per avviare tutto insieme
+npm run dev:all
 ```
 
 ---
