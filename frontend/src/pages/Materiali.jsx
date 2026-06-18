@@ -6,18 +6,29 @@ import { getDatalog } from "../api/datalog";
 
 export default function Materiali() {
   const [data, setData] = useState([]);
+  const [cdl, setCdl] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    async function loadConfig() {
+      const config = await window.api.getConfig();
+      setCdl(config.cdl);
+    }
+
+    loadConfig();
+  }, []);
+
+  useEffect(() => {
+    if (!cdl) return;
+
     async function load() {
-      const res = await getDatalog(50725); // poi lo rendiamo dinamico
+      const res = await getDatalog(cdl);
       setData(res);
     }
 
     load();
-  }, []);
+  }, [cdl]);
 
-  // 🔥 aggregazione materiali
   const materialMap = data.reduce((acc, row) => {
     const key = row.MATERIAL || "UNKNOWN";
     acc[key] = (acc[key] || 0) + 1;
