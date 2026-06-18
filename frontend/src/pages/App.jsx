@@ -13,6 +13,7 @@ export default function App() {
       const config = await window.api.getConfig();
       setCdl(config.cdl);
     }
+
     load();
   }, []);
 
@@ -28,6 +29,7 @@ export default function App() {
   return (
     <div className="p-6 pt-14 flex flex-col gap-6">
       <Header />
+
       <Dashboard data={data} />
     </div>
   );

@@ -51,7 +51,6 @@ export default function Materiali() {
 
   return (
     <div className="p-6 text-white mt-8">
-      {/* HEADER */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">Materiali</h1>
 
@@ -59,13 +58,11 @@ export default function Materiali() {
           onClick={() => navigate("/dashboard")}
           className="px-4 py-2 rounded-lg border border-[#2a2a2a] text-slate-300 hover:bg-[#2a2a2a] transition cursor-pointer"
         >
-          ← Torna Dashboard
+          Torna Dashboard
         </button>
       </div>
 
-      {/* CONTENT */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* PIE CHART */}
         <Box dark>
           <h2 className="text-lg font-semibold mb-4 text-slate-200">
             Distribuzione Materiali
@@ -92,7 +89,6 @@ export default function Materiali() {
           </ResponsiveContainer>
         </Box>
 
-        {/* LISTA */}
         <Box dark>
           <h2 className="text-lg font-semibold mb-4 text-slate-200">
             Dettaglio Materiali
