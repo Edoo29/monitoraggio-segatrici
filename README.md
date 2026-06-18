@@ -94,6 +94,15 @@ L'output si troverà in:
 electron/dist_electron/
 ```
 
+Cercare il file di installazione:
+
+```
+Monitoraggio Segatrici Setup
+```
+
+Aprire il file e procedere con l'installazione.
+Verrà creato un eseguibile e il programma sarà pronto all'uso.
+
 ---
 
 ## 🧑‍💻 Autore
